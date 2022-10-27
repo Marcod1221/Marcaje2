@@ -1,14 +1,13 @@
 package com.reportes.Marcaje2.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
 
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
@@ -16,7 +15,6 @@ import java.sql.Time;
 @Entity
 @Table(name="reportDepartament")
 public class employeDepartament {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -32,6 +30,4 @@ public class employeDepartament {
     private Long id_departamento;
     @Column(name="nombre_depto")
     private String nombre_depto;
-
-
 }

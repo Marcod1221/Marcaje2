@@ -8,7 +8,10 @@ import java.util.List;
 @Service
 public interface EmployeeService {
 
+    // Métodos implementados para obtener los datos
     List<employeDepartamentDTO> findAll();
 
-    List<employeDepartamentDTO> findByidEmpleado(String idEmpleado);
+    List<employeDepartamentDTO> findByid_Empleado(int id_Empleado);
+
+    List<employeDepartamentDTO> findByid_Departament(int id_departament);
 }
