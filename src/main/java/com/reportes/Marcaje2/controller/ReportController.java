@@ -26,19 +26,19 @@ public class ReportController {
     }
 
     // endpoint de Reporte General
-    @GetMapping("reporte/reportGeneral")
+    @GetMapping("/reporte/reportGeneral")
     public String generateReportEmployee() throws JRException, FileNotFoundException {
         return service.exportReport();
     }
 
     // endpoint de Reporte por empleado
-    @GetMapping("reporte/employee/{id_empleado}")
+    @GetMapping("/reporte/employee/{id_empleado}")
     public ResponseEntity<Object> getEmployee(@PathVariable(value="id_empleado") int id_empleado) throws JRException, FileNotFoundException {
         return ResponseEntity.ok(this.service.exportReportEmpleado(id_empleado));
     }
 
     // endpoint de Reporte por departamento
-    @GetMapping("reporte/departament/{id_departament}")
+    @GetMapping("/reporte/departament/{id_departament}")
     public ResponseEntity<Object> getDepartament(@PathVariable(value="id_departament") int id_departament) throws JRException, FileNotFoundException {
         return ResponseEntity.ok(this.service.exportReportDepartament(id_departament));
     }
