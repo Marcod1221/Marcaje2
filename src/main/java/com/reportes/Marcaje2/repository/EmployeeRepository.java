@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Time;
 import java.util.List;
 
 @Repository
@@ -22,4 +23,9 @@ public interface EmployeeRepository extends JpaRepository<employeDepartament, In
             value = "SELECT * FROM report_departament WHERE id_empleado =:id_empleado",
             nativeQuery = true)
     public List<employeDepartament> findByUser(@Param("id_empleado") int id_empleado);
+
+    @Query(
+            value = "SELECT * FROM report_departament where hora between '07:00:00' and '10:00:00'",
+            nativeQuery = true)
+    public List<employeDepartament> getAllBetweenDates();
 }

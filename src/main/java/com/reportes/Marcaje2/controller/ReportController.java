@@ -1,5 +1,6 @@
 package com.reportes.Marcaje2.controller;
 
+import com.reportes.Marcaje2.repository.EmployeeRepository;
 import com.reportes.Marcaje2.service.EmployeeService;
 import com.reportes.Marcaje2.service.reportService;
 import net.sf.jasperreports.engine.JRException;
@@ -9,6 +10,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.FileNotFoundException;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.SimpleTimeZone;
 
 @RestController
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -18,11 +25,20 @@ public class ReportController {
     private EmployeeService employeeService;
 
     @Autowired
+    EmployeeRepository employeeRepository;
+
+
+    @Autowired
     private reportService service;
 
     @GetMapping("/getEmployees")
-    public ResponseEntity<Object> index(){
+    public ResponseEntity<Object> index() throws ParseException {
         return ResponseEntity.ok(this.employeeService.findAll());
+    }
+
+    @GetMapping("/getEmployees/hora")
+    public ResponseEntity<Object> hora() throws ParseException {
+        return ResponseEntity.ok(this.employeeRepository.getAllBetweenDates());
     }
 
     // endpoint de Reporte General
@@ -43,3 +59,5 @@ public class ReportController {
         return ResponseEntity.ok(this.service.exportReportDepartament(id_departament));
     }
 }
+
+//http://localhost:63342/Marcaje2/com/reportes/Marcaje2/html/index.html?_ijt=fgnjosag2htgq4kfovkus3dal&_ij_reload=RELOAD_ON_SAVE

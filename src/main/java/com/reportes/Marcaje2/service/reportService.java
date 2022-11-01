@@ -7,6 +7,7 @@ import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,14 +24,15 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 public class reportService {
 
     // ruta donde guardaremos el reporte
-    private String path = "C:\\Users\\marpe\\Desktop";
+    //private String path = "C:\\Users\\marpe\\Desktop";
+    private String path = "/home/ronal/reportes";
 
     @Autowired
     EmployeeService employeeService;
 
 
     // Reporte General de los empleados
-    public String exportReport() throws FileNotFoundException, JRException{
+    public String exportReport() throws FileNotFoundException, JRException {
 
         // Cargamos el archivo y lo compilamos
         File file = ResourceUtils.getFile("classpath:reporteGeneral.jrxml");
