@@ -1,13 +1,16 @@
 package com.reportes.Marcaje2.service;
 
-import com.reportes.Marcaje2.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.ContentDisposition;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,15 +27,16 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 public class reportService {
 
     // ruta donde guardaremos el reporte
-    private String path = "C:\\Users\\marpe\\Desktop";
+    //private String path = "C:\\Users\\marpe\\Desktop";
     //private String path = "/home/ronal/reportes";
 
     @Autowired
     EmployeeService employeeService;
 
-
     // Reporte General de los empleados
-    public String exportReport() throws FileNotFoundException, JRException {
+    public ResponseEntity<ByteArrayResource> exportReport() throws FileNotFoundException, JRException {
+
+        String fileName = "report_General.pdf";
 
         // Cargamos el archivo y lo compilamos
         File file = ResourceUtils.getFile("classpath:reporteGeneral.jrxml");
@@ -42,16 +46,17 @@ public class reportService {
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(this.employeeService.findAll());
         Map<String,Object> parameters = new HashMap<>();
         parameters.put("createdBy", "Marco");
+
+        // Creamos el cuerpo del pdf
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,parameters,dataSource);
 
-        JasperExportManager.exportReportToPdfFile(jasperPrint, path + "\\report_General.pdf");
-
-        return "Reporte generado en la ruta: " + path;
-
+        return crearPDF(jasperPrint, fileName);
     }
 
     // Reporte General por empleado
-    public String exportReportEmpleado(int id_empleado) throws FileNotFoundException, JRException{
+    public ResponseEntity<ByteArrayResource> exportReportEmpleado(int id_empleado) throws FileNotFoundException, JRException{
+
+        String fileName = "report_empleado.pdf";
 
         // Cargamos el archivo y lo compilamos
         File file = ResourceUtils.getFile("classpath:reportEmployee.jrxml");
@@ -63,14 +68,13 @@ public class reportService {
         parameters.put("createdBy", "Marco");
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,parameters,dataSource);
 
-        JasperExportManager.exportReportToPdfFile(jasperPrint, path + "\\report_employee.pdf");
-
-        return "Reporte generado en la ruta: " + path;
+        return crearPDF(jasperPrint,fileName);
     }
 
-
     // Reporte General por Departamento
-    public String exportReportDepartament(int id_empleado) throws FileNotFoundException, JRException{
+    public ResponseEntity<ByteArrayResource> exportReportDepartament(int id_empleado) throws FileNotFoundException, JRException{
+
+        String fileName = "report_departamento.pdf";
 
         // Cargamos el archivo y lo compilamos
         File file = ResourceUtils.getFile("classpath:employeeDepartament.jrxml");
@@ -82,13 +86,12 @@ public class reportService {
         parameters.put("createdBy", "Marco");
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,parameters,dataSource);
 
-        JasperExportManager.exportReportToPdfFile(jasperPrint, path + "\\report_employeeDepartament.pdf");
-
-        return "Reporte generado en la ruta: " + path;
+        return crearPDF(jasperPrint,fileName);
     }
 
-    public String getAllfechaEntrada() throws FileNotFoundException, JRException{
+    public ResponseEntity<ByteArrayResource> getAllfechaEntrada() throws FileNotFoundException, JRException{
 
+        String fileName = "report_fechaEntrada.pdf";
         // Cargamos el archivo y lo compilamos
         File file = ResourceUtils.getFile("classpath:fechas.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
@@ -99,13 +102,12 @@ public class reportService {
         parameters.put("createdBy", "Marco");
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,parameters,dataSource);
 
-        JasperExportManager.exportReportToPdfFile(jasperPrint, path + "\\report_fueraHorario.pdf");
-
-        return "Reporte generado en la ruta: " + path;
+        return crearPDF(jasperPrint,fileName);
     }
 
-    public String getAllfechaSalida() throws FileNotFoundException, JRException{
+    public ResponseEntity<ByteArrayResource> getAllfechaSalida() throws FileNotFoundException, JRException{
 
+        String fileName = "report_fechaSalida.pdf";
         // Cargamos el archivo y lo compilamos
         File file = ResourceUtils.getFile("classpath:fechas.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
@@ -116,8 +118,19 @@ public class reportService {
         parameters.put("createdBy", "Marco");
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,parameters,dataSource);
 
-        JasperExportManager.exportReportToPdfFile(jasperPrint, path + "\\report_fueraSalida.pdf");
+        return crearPDF(jasperPrint,fileName);
+    }
 
-        return "Reporte generado en la ruta: " + path;
+    // Método para crear y descargar el pdf generado
+    public ResponseEntity<ByteArrayResource> crearPDF(JasperPrint jasperPrint, String fileName) throws JRException {
+        byte [] reporte = JasperExportManager.exportReportToPdf(jasperPrint);
+
+        ContentDisposition contentDisposition = ContentDisposition.builder("attachment")
+                .filename(fileName).build();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentDisposition(contentDisposition);
+        return ResponseEntity.ok().contentLength((long) reporte.length)
+                .contentType(MediaType.APPLICATION_PDF)
+                .headers(headers).body(new ByteArrayResource(reporte));
     }
 }
