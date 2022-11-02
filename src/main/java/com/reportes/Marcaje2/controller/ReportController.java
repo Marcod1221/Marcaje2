@@ -27,18 +27,12 @@ public class ReportController {
     @Autowired
     EmployeeRepository employeeRepository;
 
-
     @Autowired
     private reportService service;
 
     @GetMapping("/getEmployees")
     public ResponseEntity<Object> index() throws ParseException {
         return ResponseEntity.ok(this.employeeService.findAll());
-    }
-
-    @GetMapping("/getEmployees/hora")
-    public ResponseEntity<Object> hora() throws ParseException {
-        return ResponseEntity.ok(this.employeeRepository.getAllBetweenDates());
     }
 
     // endpoint de Reporte General
@@ -57,6 +51,16 @@ public class ReportController {
     @GetMapping("/reporte/departament/{id_departament}")
     public ResponseEntity<Object> getDepartament(@PathVariable(value="id_departament") int id_departament) throws JRException, FileNotFoundException {
         return ResponseEntity.ok(this.service.exportReportDepartament(id_departament));
+    }
+
+    @GetMapping("/report/getEmployees/horaEntrada")
+    public ResponseEntity<Object> horaEntrada() throws ParseException, JRException, FileNotFoundException {
+        return ResponseEntity.ok(this.service.getAllfechaEntrada());
+    }
+
+    @GetMapping("/report/getEmployees/horaSalida")
+    public ResponseEntity<Object> horaSalida() throws ParseException, JRException, FileNotFoundException {
+        return ResponseEntity.ok(this.service.getAllfechaSalida());
     }
 }
 

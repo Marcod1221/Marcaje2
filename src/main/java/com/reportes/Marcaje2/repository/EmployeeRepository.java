@@ -27,5 +27,10 @@ public interface EmployeeRepository extends JpaRepository<employeDepartament, In
     @Query(
             value = "SELECT * FROM report_departament where hora between '07:00:00' and '10:00:00'",
             nativeQuery = true)
-    public List<employeDepartament> getAllBetweenDates();
+    public List<employeDepartament> getAllfechaEntrada();
+
+    @Query(
+            value = "SELECT * FROM report_departament where hora between '14:00:00' and '18:00:00'",
+            nativeQuery = true)
+    public List<employeDepartament> getAllfechaSalida();
 }

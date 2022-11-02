@@ -24,8 +24,8 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 public class reportService {
 
     // ruta donde guardaremos el reporte
-    //private String path = "C:\\Users\\marpe\\Desktop";
-    private String path = "/home/ronal/reportes";
+    private String path = "C:\\Users\\marpe\\Desktop";
+    //private String path = "/home/ronal/reportes";
 
     @Autowired
     EmployeeService employeeService;
@@ -83,6 +83,40 @@ public class reportService {
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,parameters,dataSource);
 
         JasperExportManager.exportReportToPdfFile(jasperPrint, path + "\\report_employeeDepartament.pdf");
+
+        return "Reporte generado en la ruta: " + path;
+    }
+
+    public String getAllfechaEntrada() throws FileNotFoundException, JRException{
+
+        // Cargamos el archivo y lo compilamos
+        File file = ResourceUtils.getFile("classpath:fechas.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+
+        // pasamos la lista
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(this.employeeService.getAllfechaEntrada());
+        Map<String,Object> parameters = new HashMap<>();
+        parameters.put("createdBy", "Marco");
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,parameters,dataSource);
+
+        JasperExportManager.exportReportToPdfFile(jasperPrint, path + "\\report_fueraHorario.pdf");
+
+        return "Reporte generado en la ruta: " + path;
+    }
+
+    public String getAllfechaSalida() throws FileNotFoundException, JRException{
+
+        // Cargamos el archivo y lo compilamos
+        File file = ResourceUtils.getFile("classpath:fechas.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+
+        // pasamos la lista
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(this.employeeService.getAllfechaSalida());
+        Map<String,Object> parameters = new HashMap<>();
+        parameters.put("createdBy", "Marco");
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,parameters,dataSource);
+
+        JasperExportManager.exportReportToPdfFile(jasperPrint, path + "\\report_fueraSalida.pdf");
 
         return "Reporte generado en la ruta: " + path;
     }

@@ -15,4 +15,10 @@ public interface EmployeeService {
     List<employeDepartamentDTO> findByid_Empleado(int id_Empleado);
 
     List<employeDepartamentDTO> findByid_Departament(int id_departament);
+
+    // Empleados fuera del horario de entrada
+    List<employeDepartamentDTO> getAllfechaEntrada();
+
+    // Empleados antes del horario de salida
+    List<employeDepartamentDTO> getAllfechaSalida();
 }

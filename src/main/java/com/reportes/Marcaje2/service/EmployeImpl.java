@@ -71,4 +71,30 @@ public class EmployeImpl implements EmployeeService{
         }
         return dto;
     }
+
+    @Override
+    public List<employeDepartamentDTO> getAllfechaEntrada() {
+        List<employeDepartamentDTO> dto = new ArrayList<>();
+        Iterable<employeDepartament> employeDepartament = this.employeeRepository.getAllfechaEntrada();
+
+        // recorremos los datos obtenidos y los mappeamos a nuestro DTO
+        for (employeDepartament employee: employeDepartament) {
+            employeDepartamentDTO employeDepartamentDTO = MHelpers.modelMapper().map(employee, employeDepartamentDTO.class);
+            dto.add(employeDepartamentDTO);
+        }
+        return dto;
+    }
+
+    @Override
+    public List<employeDepartamentDTO> getAllfechaSalida() {
+        List<employeDepartamentDTO> dto = new ArrayList<>();
+        Iterable<employeDepartament> employeDepartament = this.employeeRepository.getAllfechaSalida();
+
+        // recorremos los datos obtenidos y los mappeamos a nuestro DTO
+        for (employeDepartament employee: employeDepartament) {
+            employeDepartamentDTO employeDepartamentDTO = MHelpers.modelMapper().map(employee, employeDepartamentDTO.class);
+            dto.add(employeDepartamentDTO);
+        }
+        return dto;
+    }
 }
