@@ -1,10 +1,10 @@
 # Reportes de historial de marcación de empleados
 
-Proyecto desarrollado en el entorno de java con Spring Boot
+Proyecto desarrollado para generar informes en PDF con Spring Boot utilizando Jasper Reports.
 
 # Desarrollo de Aplicación
 
-##Tecnologías principales
+## Tecnologías Utilizadas
 
 - Java
 - Jasperreports
