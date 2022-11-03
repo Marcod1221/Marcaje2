@@ -8,7 +8,7 @@ Proyecto desarrollado para generar informes en PDF con Spring Boot utilizando Ja
 - Jasperreports
 - TIBCO Jaspersoft Studio (Edición comunitaria)
 
-Informe en PDF
+## Informe en PDF
 
 Este proyecto utiliza Jasper Report como herramienta para generar informes en PDF. Las plantillas PDF se diseñaron atravez de TIBCO JasperSoft Studio. Esta nos genera un archivo jrmxl, el cual esta implementado dentro del proyecto.
 
