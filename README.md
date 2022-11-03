@@ -5,9 +5,10 @@ Proyecto desarrollado en el entorno de java con Spring Boot
 # Desarrollo de Aplicación
 
 ##Tecnologías principales
-Java
-Jasperreports
-TIBCO Jaspersoft Studio (Edición comunitaria)
+
+- Java
+- Jasperreports
+- TIBCO Jaspersoft Studio (Edición comunitaria)
 
 preview
 
