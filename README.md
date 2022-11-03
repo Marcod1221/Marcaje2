@@ -35,5 +35,5 @@ https://github.com/RonalPerez506/frontend-angular-prod
 
 ## preview de los reportes
 
-![image](https://user-images.githubusercontent.com/112280392/199645315-0427b1a6-3dbd-4fbf-a4b5-45310568e4ee.png)![image](https://user-images.githubusercontent.com/112280392/199645507-1af6df44-f4a1-4d3f-bc28-5e8bb5f8c63e.png)
+![image](https://user-images.githubusercontent.com/112280392/199645927-ae265510-9a4a-4441-aa80-60e8ad176c07.png)![image](https://user-images.githubusercontent.com/112280392/199645507-1af6df44-f4a1-4d3f-bc28-5e8bb5f8c63e.png)
 
