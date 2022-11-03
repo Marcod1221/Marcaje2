@@ -10,4 +10,5 @@ Jasperreports
 TIBCO Jaspersoft Studio (Edición comunitaria)
 
 preview
-![image](https://user-images.githubusercontent.com/112280392/199643144-c6a8f663-6c89-4bbb-8d8a-0bca76b0ef2a.png)
+
+![image](https://user-images.githubusercontent.com/112280392/199643194-d95954af-4730-401c-abed-1a558b576a7b.png)
