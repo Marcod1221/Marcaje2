@@ -2,8 +2,6 @@
 
 Proyecto desarrollado para generar informes en PDF con Spring Boot utilizando Jasper Reports.
 
-# Desarrollo de Aplicación
-
 ## Tecnologías Utilizadas
 
 - Java
@@ -14,7 +12,24 @@ Proyecto desarrollado para generar informes en PDF con Spring Boot utilizando Ja
 
 ![image](https://user-images.githubusercontent.com/112280392/199644347-a577b5fc-5131-43e7-a142-3af5b43c3213.png)
 
-preview de los reportes
+## Endpoints para Generar los reportes
 
-![image](https://user-images.githubusercontent.com/112280392/199645315-0427b1a6-3dbd-4fbf-a4b5-45310568e4ee.png)![image](https://user-images.githubusercontent.com/112280392/199645426-71afcd6a-ca8b-4582-95a0-3df9f2125cfe.png)
+- Reporte General 
+http://10.8.0.10:8080/reporte/reportGeneral
+
+- Reporte por empleado
+http://10.8.0.10:8080/reporte/employee/{id_empleado}
+
+- Reporte por departamento
+http://10.8.0.10:8080/reporte/departament/{id_departament}
+
+- Reporte por HoraEntrada
+http://10.8.0.10:8080/report/getEmployees/horaEntrada
+
+- Reporte por HoraSalida
+http://10.8.0.10:8080/report/getEmployees/horaSalida
+
+## preview de los reportes
+
+![image](https://user-images.githubusercontent.com/112280392/199645315-0427b1a6-3dbd-4fbf-a4b5-45310568e4ee.png)![image](https://user-images.githubusercontent.com/112280392/199645507-1af6df44-f4a1-4d3f-bc28-5e8bb5f8c63e.png)
 
