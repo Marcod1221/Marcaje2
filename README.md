@@ -29,6 +29,10 @@ http://10.8.0.10:8080/report/getEmployees/horaEntrada
 - Reporte por HoraSalida
 http://10.8.0.10:8080/report/getEmployees/horaSalida
 
+## Proyecto Necesario para probar cada enpoint
+
+https://github.com/RonalPerez506/frontend-angular-prod
+
 ## preview de los reportes
 
 ![image](https://user-images.githubusercontent.com/112280392/199645315-0427b1a6-3dbd-4fbf-a4b5-45310568e4ee.png)![image](https://user-images.githubusercontent.com/112280392/199645507-1af6df44-f4a1-4d3f-bc28-5e8bb5f8c63e.png)
