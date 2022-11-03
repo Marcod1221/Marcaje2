@@ -8,6 +8,10 @@ Proyecto desarrollado para generar informes en PDF con Spring Boot utilizando Ja
 - Jasperreports
 - TIBCO Jaspersoft Studio (Edición comunitaria)
 
+## TIBCO Jaspersoft Studio (Edición comunitaria)
+
+Herramienta para generar los reportes utilizando plantillas que vienen por defecto con esta herramienta para facilitar la creación de los reportes
+
 ## Plantilla y Estructura
 
 ![image](https://user-images.githubusercontent.com/112280392/199644347-a577b5fc-5131-43e7-a142-3af5b43c3213.png)
